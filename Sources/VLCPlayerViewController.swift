@@ -249,6 +249,8 @@ extension VLCPlayerViewController: VLCMediaPlayerDelegate {
         if player.state == .ended || player.state == .error || player.state == .stopped {
             dismiss(animated: true)
         }
+        
+        delegate?.mediaPlayerStateChanged(state: player.state)
     }
     
     public func mediaPlayerTimeChanged(_ aNotification: Notification!) {
@@ -256,6 +258,41 @@ extension VLCPlayerViewController: VLCMediaPlayerDelegate {
         isBuffering = false
 
         updateViews(with: player.time)
+        
+        delegate?.mediaPlayerTimeChanged(time: player.time)
+    }
+    
+    public func mediaPlayerTitleChanged(_ aNotification: Notification!) {
+        guard let titleDescriptions = player.titleDescriptions,
+            player.currentTitleIndex != NSNotFound,
+            let titleDescription = titleDescriptions[Int(player.currentTitleIndex)] as? [String: Any] else {
+                return
+        }
+        
+        guard let name = titleDescription[VLCTitleDescriptionName] as? String,
+            let duration = titleDescription[VLCTitleDescriptionDuration] as? Int,
+            let isMenu = titleDescription[VLCTitleDescriptionIsMenu] as? Bool else {
+            return
+        }
+        
+        delegate?.mediaPlayerTitleChanged(name: name, duration: duration, isMenu: isMenu)
+    }
+    
+    public func mediaPlayerChapterChanged(_ aNotification: Notification!) {
+        guard player.currentChapterIndex != NSNotFound,
+            player.currentTitleIndex != NSNotFound,
+            let chapterDescriptions = player.chapterDescriptions(ofTitle: player.currentTitleIndex),
+        let chapterDescription = chapterDescriptions[Int(player.currentChapterIndex)] as? [String: Any] else {
+                return
+        }
+        
+        guard let name = chapterDescription[VLCChapterDescriptionName] as? String,
+            let duration = chapterDescription[VLCChapterDescriptionDuration] as? Int,
+            let timeOffset = chapterDescription[VLCChapterDescriptionTimeOffset] as? Int else {
+                return
+        }
+
+        delegate?.mediaPlayerChapterChanged(name: name, timeOffset: timeOffset, duration: duration)
     }
 }
 
