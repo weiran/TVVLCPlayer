@@ -252,7 +252,7 @@ extension VLCPlayerViewController: VLCMediaPlayerDelegate {
             dismiss(animated: true)
         }
         
-        delegate?.mediaPlayer(self, stateChanged: player.state)
+        delegate?.mediaPlayer?(self, stateChanged: player.state)
     }
     
     public func mediaPlayerTimeChanged(_ aNotification: Notification!) {
@@ -261,7 +261,7 @@ extension VLCPlayerViewController: VLCMediaPlayerDelegate {
 
         updateViews(with: player.time)
         
-        delegate?.mediaPlayer(self, timeChanged: player.time)
+        delegate?.mediaPlayer?(self, timeChanged: player.time)
     }
     
     public func mediaPlayerTitleChanged(_ aNotification: Notification!) {
@@ -277,7 +277,7 @@ extension VLCPlayerViewController: VLCMediaPlayerDelegate {
             return
         }
         
-        delegate?.mediaPlayer(self, titleChanged: name, duration: duration, isMenu: isMenu)
+        delegate?.mediaPlayer?(self, titleChanged: name, duration: duration, isMenu: isMenu)
     }
     
     public func mediaPlayerChapterChanged(_ aNotification: Notification!) {
@@ -294,7 +294,7 @@ extension VLCPlayerViewController: VLCMediaPlayerDelegate {
                 return
         }
 
-        delegate?.mediaPlayer(self, chapterChanged: name, timeOffset: timeOffset, duration: duration)
+        delegate?.mediaPlayer?(self, chapterChanged: name, timeOffset: timeOffset, duration: duration)
     }
 }
 
