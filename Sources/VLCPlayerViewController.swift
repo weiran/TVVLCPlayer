@@ -82,6 +82,8 @@ public class VLCPlayerViewController: UIViewController {
     
     public let player = VLCMediaPlayer()
     
+    public var delegate: VLCMediaPlayerViewControllerDelegate?
+    
     public override var preferredUserInterfaceStyle: UIUserInterfaceStyle {
         return .dark
     }
@@ -250,7 +252,7 @@ extension VLCPlayerViewController: VLCMediaPlayerDelegate {
             dismiss(animated: true)
         }
         
-        delegate?.mediaPlayer(player: self, stateChanged: player.state)
+        delegate?.mediaPlayer(self, stateChanged: player.state)
     }
     
     public func mediaPlayerTimeChanged(_ aNotification: Notification!) {
@@ -259,7 +261,7 @@ extension VLCPlayerViewController: VLCMediaPlayerDelegate {
 
         updateViews(with: player.time)
         
-        delegate?.mediaPlayer(player: self, timeChanged: player.time)
+        delegate?.mediaPlayer(self, timeChanged: player.time)
     }
     
     public func mediaPlayerTitleChanged(_ aNotification: Notification!) {
