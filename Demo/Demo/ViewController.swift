@@ -31,19 +31,19 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: VLCMediaPlayerViewControllerDelegate {
-    func mediaPlayer(_ player: VLCPlayerViewController, stateChanged state: VLCMediaPlayerState) {
+    func mediaPlayer(_ playerViewController: VLCPlayerViewController, stateChanged state: VLCMediaPlayerState) {
         print("State changed: \(state.rawValue)")
     }
     
-    func mediaPlayer(_ player: VLCPlayerViewController, timeChanged time: VLCTime) {
+    func mediaPlayer(_ playerViewController: VLCPlayerViewController, timeChanged time: VLCTime) {
         print("Time changed: \(time)")
     }
     
-    func mediaPlayer(_ player: VLCPlayerViewController, titleChanged name: String, duration: Int, isMenu: Bool) {
+    func mediaPlayer(_ playerViewController: VLCPlayerViewController, titleChanged name: String, duration: Int, isMenu: Bool) {
         print("Title changed: \(name)")
     }
     
-    func mediaPlayer(_ player: VLCPlayerViewController, chapterChanged name: String, timeOffset: Int, duration: Int) {
+    func mediaPlayer(_ playerViewController: VLCPlayerViewController, chapterChanged name: String, timeOffset: Int, duration: Int) {
         print("Chapter changed: \(name)")
     }
 }
