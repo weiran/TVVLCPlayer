@@ -12,6 +12,10 @@ extension VLCMediaPlayer {
     var totalTime: VLCTime? {
         return time - remainingTime
     }
+    
+    /// use a singleton of VLCMediaPlayer as crashes occur during
+    /// dealloc: https://code.videolan.org/videolan/VLCKit/issues/116
+    public static let shared = VLCMediaPlayer()
 }
 
 func -(tl: VLCTime, tr: VLCTime) -> VLCTime {

@@ -80,7 +80,7 @@ public class VLCPlayerViewController: UIViewController {
         }
     }
     
-    public let player = VLCMediaPlayer()
+    public let player = VLCMediaPlayer.shared
     
     public override var preferredUserInterfaceStyle: UIUserInterfaceStyle {
         return .dark
