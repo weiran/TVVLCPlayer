@@ -22,7 +22,8 @@ Pod::Spec.new do |s|
   s.frameworks = 'UIKit'
   s.dependency 'TVVLCKit'
   s.pod_target_xcconfig = {
-      'SWIFT_OBJC_BRIDGING_HEADER' => "${PODS_TARGET_SRCROOT}/Sources/TVVLCPlayer-Bridging-Header.h"
+      'SWIFT_OBJC_BRIDGING_HEADER' => "${PODS_TARGET_SRCROOT}/Sources/TVVLCPlayer-Bridging-Header.h",
+      'DEFINES_MODULE' => 'NO'
   }
   s.resources = ["Resources/*.storyboard"]
   s.resource_bundle = { 'TVVLCPlayer' => [ 'Resources/*.xcassets' ] }
