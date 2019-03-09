@@ -9,4 +9,4 @@ before_install:
 - pod repo update
 script:
 - set -o pipefail && travis_wait xcodebuild -workspace "${TRAVIS_XCODE_WORKSPACE}" -scheme ${TRAVIS_XCODE_SCHEME} -sdk appletvsimulator -configuration Debug | xcpretty
-- pod lib lint
+- travis_wait pod lib lint
