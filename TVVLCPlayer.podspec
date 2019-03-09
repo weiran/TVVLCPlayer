@@ -18,7 +18,8 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Sources/**/*.{swift,h}'
 
-  s.frameworks = 'UIKit'
+  s.frameworks = 'UIKit', 'Foundation', 'AudioToolbox', 'AVFoundation', 'VideoToolbox', 'CoreMedia'
+  s.libraries = 'z', 'bz2', 'c++', 'iconv'
   s.dependency 'TVVLCKit'
   s.resources = ['Resources/*.storyboard','Resources/*.xcassets']
   s.script_phase = { :name => 'Add modulemaps in VLCKit', :script => 'cp -rf "${PODS_TARGET_SRCROOT}/Modules" "${PODS_ROOT}/TVVLCKit/TVVLCKit.framework/Modules"', :execution_position => :before_compile }
