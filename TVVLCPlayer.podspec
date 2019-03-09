@@ -15,11 +15,10 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/kodlian'
   s.swift_version    = '4.0'
   s.tvos.deployment_target = '11.0'
+  s.static_framework = true
 
   s.source_files = 'Sources/**/*.{swift,h}'
 
-  s.frameworks = 'UIKit', 'Foundation', 'AudioToolbox', 'AVFoundation', 'VideoToolbox', 'CoreMedia'
-  s.libraries = 'z', 'bz2', 'c++', 'iconv'
   s.dependency 'TVVLCKit'
   s.resources = ['Resources/*.storyboard','Resources/*.xcassets']
   s.script_phase = { :name => 'Add modulemaps in VLCKit', :script => 'cp -rf "${PODS_TARGET_SRCROOT}/Modules" "${PODS_ROOT}/TVVLCKit/TVVLCKit.framework/Modules"', :execution_position => :before_compile }
