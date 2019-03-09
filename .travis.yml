@@ -5,6 +5,8 @@ xcode_scheme: Demo
 podfile: Demo Cocoapods/Podfile
 before_install:
 - gem install xcpretty
+- gem update cocoapods
+- pod repo update
 script:
 - set -o pipefail && xcodebuild -workspace ${TRAVIS_XCODE_WORKSPACE} -scheme ${TRAVIS_XCODE_SCHEME} -sdk appletvsimulator -configuration Debug | xcpretty
 - pod lib lint
