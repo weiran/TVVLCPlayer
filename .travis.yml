@@ -1,6 +1,6 @@
 language: objective-c
 osx_image: xcode10.1
-xcode_workspace: Demo Cocoapods/Demo.xcworkspace
+xcode_workspace: "Demo\\ Cocoapods/Demo.xcworkspace"
 xcode_scheme: Demo
 podfile: Demo Cocoapods/Podfile
 before_install:
