@@ -1,0 +1,11 @@
+language: objective-c
+osx_image: xcode10.2
+xcode_workspace: "Demo Cocoapods/Demo.xcworkspace"
+xcode_scheme: Demo
+podfile: Demo Cocoapods/Podfile
+before_install:
+- gem install xcpretty
+- gem update cocoapods
+script:
+- set -o pipefail && travis_wait xcodebuild -workspace "${TRAVIS_XCODE_WORKSPACE}" -scheme ${TRAVIS_XCODE_SCHEME} -sdk appletvsimulator -configuration Debug | xcpretty
+- travis_wait 30 pod lib lint

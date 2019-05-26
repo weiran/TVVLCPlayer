@@ -73,15 +73,15 @@ public class VLCPlayerViewController: UIViewController {
             guard self.viewIfLoaded != nil else {
                 return
             }
-            
-            if isOpening && !openingIndicator.isAnimating {
-                openingIndicator.startAnimating()
-            } else if !isOpening && openingIndicator.isAnimating {
-                openingIndicator.stopAnimating()
-            }
 
             guard isOpening != oldValue else {
                 return
+            }
+            
+            if isOpening {
+                openingIndicator.startAnimating()
+            } else {
+                openingIndicator.stopAnimating()
             }
 
             self.setUpPositionController()
